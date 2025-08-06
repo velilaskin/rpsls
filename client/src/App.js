@@ -5,7 +5,9 @@ import PlayerNameInput from './components/PlayerNameInput';
 import Lobby from './components/Lobby';
 import Game from './components/Game';
 
-const socket = io('http://localhost:5000');
+// Use environment variable for backend URL, fallback to localhost for development
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+const socket = io(BACKEND_URL);
 
 function App() {
   const [player, setPlayer] = useState(null);

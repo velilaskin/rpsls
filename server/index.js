@@ -7,21 +7,34 @@ require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app);
+
+// CORS configuration for production
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? [process.env.FRONTEND_URL || "https://your-netlify-app.netlify.app", "https://netlify.app"]
+    : "http://localhost:3000",
+  methods: ["GET", "POST"],
+  credentials: true
+};
+
 const io = socketIo(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"]
-  }
+  cors: corsOptions
 });
 
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
-// MongoDB connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/rpsls', {
+// MongoDB connection - using Netlify environment variables
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/rpsls';
+
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+}).then(() => {
+  console.log('Connected to MongoDB Atlas');
+}).catch((error) => {
+  console.error('MongoDB connection error:', error);
 });
 
 const db = mongoose.connection;

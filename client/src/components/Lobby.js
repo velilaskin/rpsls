@@ -5,13 +5,16 @@ const Lobby = ({ player, currentLobby, lobbies, onJoinLobby, onStartGame, onLeav
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Use environment variable for backend URL
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+
   useEffect(() => {
     fetchLeaderboard();
   }, []);
 
   const fetchLeaderboard = async () => {
     try {
-      const response = await fetch('/api/players');
+      const response = await fetch(`${BACKEND_URL}/api/players`);
       const data = await response.json();
       setLeaderboard(data);
     } catch (error) {
