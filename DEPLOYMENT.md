@@ -74,7 +74,7 @@ This guide will help you deploy the RPSLS game to Netlify (frontend) and a backe
    - Click "Environment" tab
    - Add these variables:
      ```
-           MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/rpsls
+           MONGODB_URI=your-mongodb-atlas-connection-string
      NODE_ENV=production
      PORT=10000
      ```
@@ -112,7 +112,7 @@ This guide will help you deploy the RPSLS game to Netlify (frontend) and a backe
 
 ### Backend (Render/Railway/Heroku)
 ```env
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/rpsls
+MONGODB_URI=your-mongodb-atlas-connection-string
 NODE_ENV=production
 PORT=10000
 ```
