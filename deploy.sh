@@ -7,7 +7,7 @@ echo "================================"
 if [ ! -f "server/.env" ]; then
     echo "⚠️  server/.env not found. Please create it with your MongoDB Atlas connection string."
     echo "Example:"
-    echo "MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/rpsls?retryWrites=true&w=majority"
+    echo "MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/rpsls"
     echo "NODE_ENV=development"
     echo "PORT=5000"
 fi
